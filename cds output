@@ -1,0 +1,152 @@
+Step 1: Create Database
+Database Created: CourierDeliverySystem
+This command creates a new database named CourierDeliverySystem where all subsequent tables and data will be stored.
+
+  
+Step 2: Create Tables
+Customers Table:
+Columns: CustomerID, CustomerName, Address, PhoneNumber
+Customer data was inserted as follows:
+CustomerID 1: Alice, Address: 123 Elm St, Phone: 555-1234
+CustomerID 2: Bob, Address: 456 Oak St, Phone: 555-5678
+CustomerID 3: Charlie, Address: 789 Pine St, Phone: 555-9876
+CustomerID 4: David, Address: 101 Maple St, Phone: 555-6543
+CustomerID 5: Eva, Address: 202 Birch St, Phone: 555-4321
+Packages Table:
+Columns: PackageID, PackageName, Weight, Price
+Package data was inserted as follows:
+PackageID 1: Laptop, Weight: 2.5 kg, Price: $1200.00
+PackageID 2: Books, Weight: 1.0 kg, Price: $30.00
+PackageID 3: Phone, Weight: 0.5 kg, Price: $800.00
+PackageID 4: Furniture, Weight: 15.0 kg, Price: $500.00
+PackageID 5: Groceries, Weight: 3.0 kg, Price: $100.00
+Couriers Table:
+Columns: CourierID, CourierName
+Courier data was inserted as follows:
+CourierID 1: Courier A
+CourierID 2: Courier B
+CourierID 3: Courier C
+CourierID 4: Courier D
+CourierID 5: Courier E
+Deliveries Table:
+Columns: DeliveryID, CustomerID, PackageID, CourierID, DeliveryDate, DeliveryStatus
+Delivery data was inserted as follows:
+DeliveryID 1: Customer 1 (Alice), Package 1 (Laptop), Courier 1 (Courier A), DeliveryDate: 2024-11-12, DeliveryStatus: Delivered
+DeliveryID 2: Customer 2 (Bob), Package 2 (Books), Courier 2 (Courier B), DeliveryDate: 2024-11-13, DeliveryStatus: Delivered
+DeliveryID 3: Customer 3 (Charlie), Package 3 (Phone), Courier 3 (Courier C), DeliveryDate: 2024-11-14, DeliveryStatus: Pending
+DeliveryID 4: Customer 4 (David), Package 4 (Furniture), Courier 4 (Courier D), DeliveryDate: 2024-11-15, DeliveryStatus: Delivered
+DeliveryID 5: Customer 5 (Eva), Package 5 (Groceries), Courier 5 (Courier E), DeliveryDate: 2024-11-16, DeliveryStatus: In Transit
+
+
+
+
+
+
+
+
+
+Step 3: Insert sample data (Inserting sample data does not produce an output, but it adds entries to the tables.)
+
+Step 4: Perform DDL operations (add constraints)
+The weight of packages must be greater than 0.
+The delivery status must be one of the following: "Pending," "In Transit," or "Delivered."
+  
+Step 5: Perform DML operations (update, delete)
+Updated Deliveries:
+Delivery with ID 2 has been updated to "Delivered".
+Deleted Deliveries and Packages:
+Delivery entry with PackageID 5 has been deleted.
+Package entry with PackageID 5 has been deleted.
+
+Step 6: Perform DCL operations (grant and revoke permissions)
+A new user 'user'@'localhost' was created with the password 'password'.
+Permissions to SELECT and INSERT were granted on the Customers table to the new user.
+The INSERT permission was revoked from the 'user'@'localhost' on the Customers table.
+
+Step 7: Perform TCL operations (transaction control)
+Transaction was started:
+Package with PackageID 1 had its price increased by 10%.
+Rollback:
+The price increase was rolled back, so the package price is reverted to its original state.
+  
+Step 8: DQL operations with aggregate functions
+Delivery Count by Courier:
+Courier 1 (Courier A): 1 delivery
+Courier 2 (Courier B): 1 delivery
+Courier 3 (Courier C): 1 delivery
+Courier 4 (Courier D): 1 delivery
+Courier 5 (Courier E): 1 delivery
+Total Amount Spent by Customer:
+Customer 1 (Alice): $1200.00
+Customer 2 (Bob): $30.00
+Customer 3 (Charlie): $800.00
+Customer 4 (David): $500.00
+Customer 5 (Eva): $100.00
+  
+Step 9: Joins
+Customer, Package, and Courier Details for All Deliveries:
+Alice: Laptop, Courier A
+Bob: Books, Courier B
+Charlie: Phone, Courier C
+David: Furniture, Courier D
+Eva: Groceries, Courier E
+All Deliveries, Including Missing Customer, Package, or Courier:
+(Returns all deliveries even if a matching customer, package, or courier is missing. If any of these are missing, the columns related to those entities will have NULL values.)
+All Packages and Their Delivery Details, Including Undelivered Packages:
+Lists all packages, including those with NULL values for the delivery details if not delivered yet.
+Delivery Count by Courier:
+Courier A: 1 delivery
+Courier B: 1 delivery
+Courier C: 1 delivery
+Courier D: 1 delivery
+Courier E: 1 delivery
+Deliveries Sorted by Customer Name and Delivery Date:
+Alice: Laptop, Courier A, 2024-11-12
+Bob: Books, Courier B, 2024-11-13
+Charlie: Phone, Courier C, 2024-11-14
+David: Furniture, Courier D, 2024-11-15
+Eva: Groceries, Courier E, 2024-11-16
+Customers with More than One Package:
+No customers meet this criteria as each customer has only one package.
+
+
+Step 10: Sorting and Filtering
+Deliveries Sorted by Delivery Date:
+Delivery 5: 2024-11-16 (Eva, Groceries, Courier E, In Transit)
+Delivery 4: 2024-11-15 (David, Furniture, Courier D, Delivered)
+Delivery 3: 2024-11-14 (Charlie, Phone, Courier C, Pending)
+Delivery 2: 2024-11-13 (Bob, Books, Courier B, Delivered)
+Delivery 1: 2024-11-12 (Alice, Laptop, Courier A, Delivered)
+Packages with Price > 100 Ordered by Price:
+Laptop: $1200.00
+Phone: $800.00
+Furniture: $500.00
+
+  
+Step 11: ACID Properties Demonstration
+Commit:
+A new package (Monitor, $150.00) was added for Customer 1, and a new delivery entry was created for Courier B with a delivery date of 2024-11-17.
+
+  
+Step 12: Constraints and Triggers
+Trigger:
+If a package with a weight less than or equal to 0 is attempted to be inserted, an error is raised: 'Weight must be greater than 0'.
+
+  
+Step 13: Using Clauses (WHERE, GROUP BY, HAVING)
+Delivery Count by Courier (Having DeliveryCount > 1):
+No courier has more than one delivery, so no results are returned.
+Packages with Price Between 50 and 100:
+No packages fall within this price range, so no results are returned.
+  
+Step 14: Aggregate Functions
+Average Weight of Packages:
+Average weight: 5.74 kg
+Minimum and Maximum Price of Packages:
+Minimum Price: $30.00 (Books)
+Maximum Price: $1200.00 (Laptop)
+Step 15: Sort and Limit Results
+Top 3 Customers by Name:
+Alice
+Bob
+Charlie
